@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="//www.w3.org/1999/html" xmlns="//www.w3.org/1999/html">
+	
+<head>
+    <title>Wave Coffee</title>
+	<link rel="shortcut icon" href="favicon.ico"/>
+	<input type="hidden" id="email" name="email" value="marc.sassoon@genesys.com">
+	<input type="hidden" id="firstname" name="firstname" value="Marc">
+	<input type="hidden" id="lastname" name="lastname" value="Sassoon">
+
+    <!-- Set URL parms -->
+	
+	<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="7aad6c59-d88a-46d3-a32d-642502204759" data-blockingmode="auto" type="text/javascript"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177251718-1"></script>
+	
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177251718-1');
+  console.log('GA tag loaded');
+	 
+</script>
+	
+    <script>
+	localStorage.setItem("email", "woutervangeluwe+20112020-25@gmail.com");
+	localStorage.setItem("firstname", "Wouter");
+	localStorage.setItem("lastname", "Test1");
+       var queryString = window.location.search;
+       console.log(queryString);
+
+       var urlParams = new URLSearchParams(queryString);
+
+       var vorgid = urlParams.get('orgid')
+       console.log(vorgid);
+	sessionStorage.setItem('vorgid',vorgid);
+
+       var vdepid = urlParams.get('depid')
+       console.log(vdepid);
+	sessionStorage.setItem('vdepid',vdepid);
+
+       var vregion = urlParams.get('region')
+       console.log(vregion);
+	sessionStorage.setItem('vregion',vregion);
+
+       if (vregion == 'euw1')
+          {var vurl = 'ie';
+           console.log(vurl);
+	   sessionStorage.setItem('vurl',vurl);}
+       else if (vregion == 'use1' || vregion == 'use2' || vregion == 'usw1' || vregion == 'usw2')
+          {var vurl = 'com';
+           console.log(vurl);
+	   sessionStorage.setItem('vurl',vurl);}
+	(function(a,t,c,l,o,u,d){a['_genesysJourneySdk']=o;a[o]=a[o]||function(){
+  (a[o].q=a[o].q||[]).push(arguments)},a[o].l=1*new Date();u=t.createElement(c),
+  d=t.getElementsByTagName(c)[0];u.async=1;u.src=l;u.charset='utf-8';d.parentNode.insertBefore(u,d)
+  })(window, document, 'script', 'https://apps.mypurecloud.' + vurl + '/journey/sdk/js/web/v1/ac.js', 'ac');
+  ac('init', vorgid, { region: vregion });
+ac('load', 'autotrackUrlChange', {
+  onUrlChange: function () {
+    var attributes = {};
+    if(typeof localStorage.getItem("email") !== 'undefined' && localStorage.getItem("email") !== null){
+      var email = localStorage.getItem("email");
+      console.log('>>>>> Genesys: Email address is ' + email);
+      var encodedemail = encodeURIComponent(email);
+      console.log('>>>>> Genesys: Encoded email is ' + encodedemail);
+      var firstname = localStorage.getItem("firstname");
+      var lastname = localStorage.getItem("lastname");
+      attributes["email"] = email;
+      attributes["givenName"] = firstname;
+      attributes["familyName"] = lastname;
+      attributes["encodedemail"] = encodedemail;
+      var strAtts = JSON.stringify(attributes);
+      console.log('>>>>> Genesys: Attributes to send: ' + strAtts);
+      ac('identify', email, {email:email,givenName:firstname,familyName:lastname});
+    }
+    ac('pageview', {}, attributes);
+  }});
+  ac('load', 'autotrackIdle', { idleEvents: [ {},  { eventName: 'idle_for_30_sec', idleAfter: 30 } ] });
+  ac('on', 'webchat:all', (event) => {
+  console.log('received %s:%s event', event.actionMediaType, event.actionState, event); 
+	  gtag('event','Engage',{'event_category':'GPEChat','event_label': event.actionMediaType +':' + event.actionState});
+	  console.log('Engagement GA sent');
+    });
+  ac('on', 'contentoffer:all', (eventCO) => {
+  console.log('received %s:%s event', eventCO.actionMediaType, eventCO.actionState, eventCO); 
+	  gtag('event','ContentOffer',{'event_category':'GPEContentOffer','event_label': eventCO.actionMediaType +':' + eventCO.actionState});
+	  console.log('Content Offer GA sent');
+    });
+    </script>
+
+	
+<style>
+.button {
+top:450px;right:-15px;position:fixed;z-index:99999;padding:10px;color:#000000;border:1px solid #000000;transform: rotate(-90deg);height:43.5px;font-weight:700;
+}
+
+.chat-button {background-color: #ffffff!;}
+</style>
+	
+</head>
+
+<body>
+
+<img src="images/home.jpg" alt="Home" usemap="#workmap" width=100% height=100%>
+<script id="CookieDeclaration" src="https://consent.cookiebot.com/7aad6c59-d88a-46d3-a32d-642502204759/cd.js" type="text/javascript" async></script>
+<map name="workmap">
+  <area shape="rect" coords="288,74,638,123" alt="Store" href="store.html">
+  <area shape="rect" coords="1055,465,1314,545" alt="Shop Now" href="store.html">
+  <area shape="rect" coords="1033,77,1197,115" alt="Contact Us" href="contact.html">
+</map>
+<script src="https://apps.mypurecloud.ie/widgets/9.0/cxbus.min.js" onload="javascript:CXBus.configure({debug:false,pluginsPath:'https://apps.mypurecloud.ie/widgets/9.0/plugins/'}); CXBus.loadPlugin('widgets-core');"></script>
+
+<script type="text/javascript" src=js/widgets.js></script>
+
+<button class="button chat-button" onclick="customPlugin.command('WebChat.open',{markdown: true});">Start Chat</button>
+</body>
+</html>

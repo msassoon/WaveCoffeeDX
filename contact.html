@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="//www.w3.org/1999/html" xmlns="//www.w3.org/1999/html">
+	
+<head>
+    <title>Wave Coffee Contact Us</title>
+	<link rel="shortcut icon" href="favicon.ico"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177251718-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177251718-1');
+  console.log('GA tag loaded');
+	 
+</script>
+<script type="text/javascript" src=js/getgpe.js>
+	  ac('on', 'webchat:all', (event) => {
+  console.log('received %s:%s event', event.actionMediaType, event.actionState, event);
+	  gtag('event','Engage',{'event_category':'GPEChat','event_label': event.actionMediaType +':' + event.actionState});
+	  console.log('Engagement GA sent');
+    });
+	  ac('on', 'contentoffer:all', (eventCO) => {
+  console.log('received %s:%s event', eventCO.actionMediaType, eventCO.actionState, eventCO); 
+	  gtag('event','ContentOffer',{'event_category':'GPEContentOffer','event_label': eventCO.actionMediaType +':' + eventCO.actionState});
+	  console.log('Content Offer GA sent');
+    });
+</script>
+	
+<style>
+.button {
+top:450px;right:-15px;position:fixed;z-index:99999;padding:10px;color:#000000;border:1px solid #000000;transform: rotate(-90deg);height:43.5px;font-weight:700;
+}
+
+.chat-button {background-color: #ffffff!;}
+</style>
+</head>
+
+<body>
+
+<img src="images/ContactUs.jpg" alt="Home" usemap="#workmap" width=100% height=100%>
+
+<map name="workmap">
+  <area shape="rect" coords="238,54,588,103" alt="Store" href="store.html">
+  <area shape="rect" coords="1085,365,1344,445" alt="Shop Now" href="store.html">
+  <area shape="rect" coords="1033,57,1197,1095" alt="Contact Us" href="contact.html">
+</map>
+<script src="https://apps.mypurecloud.ie/widgets/9.0/cxbus.min.js" onload="javascript:CXBus.configure({debug:false,pluginsPath:'https://apps.mypurecloud.ie/widgets/9.0/plugins/'}); CXBus.loadPlugin('widgets-core');"></script>
+
+<script type="text/javascript" src=js/widgets.js></script>
+
+<button class="button chat-button" onclick="customPlugin.command('WebChat.open');">Start Chat</button>
+</body>
+</html>
