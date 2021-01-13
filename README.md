@@ -1,1 +1,1 @@
-# WaveCoffee
+# WaveCoffeeWM
