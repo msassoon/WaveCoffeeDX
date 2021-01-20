@@ -10,7 +10,6 @@
 
     <!-- Set URL parms -->
 	
-	<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="7aad6c59-d88a-46d3-a32d-642502204759" data-blockingmode="auto" type="text/javascript"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177251718-1"></script>
 	
@@ -25,70 +24,18 @@
 </script>
 	
     <script>
-	localStorage.setItem("email", "woutervangeluwe+20112020-25@gmail.com");
-	localStorage.setItem("firstname", "Wouter");
-	localStorage.setItem("lastname", "Test1");
-       var queryString = window.location.search;
-       console.log(queryString);
-
-       var urlParams = new URLSearchParams(queryString);
-
-       var vorgid = urlParams.get('orgid')
-       console.log(vorgid);
-	sessionStorage.setItem('vorgid',vorgid);
-
-       var vdepid = urlParams.get('depid')
-       console.log(vdepid);
-	sessionStorage.setItem('vdepid',vdepid);
-
-       var vregion = urlParams.get('region')
-       console.log(vregion);
-	sessionStorage.setItem('vregion',vregion);
-
-       if (vregion == 'euw1')
-          {var vurl = 'ie';
-           console.log(vurl);
-	   sessionStorage.setItem('vurl',vurl);}
-       else if (vregion == 'use1' || vregion == 'use2' || vregion == 'usw1' || vregion == 'usw2')
-          {var vurl = 'com';
-           console.log(vurl);
-	   sessionStorage.setItem('vurl',vurl);}
-	(function(a,t,c,l,o,u,d){a['_genesysJourneySdk']=o;a[o]=a[o]||function(){
-  (a[o].q=a[o].q||[]).push(arguments)},a[o].l=1*new Date();u=t.createElement(c),
-  d=t.getElementsByTagName(c)[0];u.async=1;u.src=l;u.charset='utf-8';d.parentNode.insertBefore(u,d)
-  })(window, document, 'script', 'https://apps.mypurecloud.' + vurl + '/journey/sdk/js/web/v1/ac.js', 'ac');
-  ac('init', vorgid, { region: vregion });
-ac('load', 'autotrackUrlChange', {
-  onUrlChange: function () {
-    var attributes = {};
-    if(typeof localStorage.getItem("email") !== 'undefined' && localStorage.getItem("email") !== null){
-      var email = localStorage.getItem("email");
-      console.log('>>>>> Genesys: Email address is ' + email);
-      var encodedemail = encodeURIComponent(email);
-      console.log('>>>>> Genesys: Encoded email is ' + encodedemail);
-      var firstname = localStorage.getItem("firstname");
-      var lastname = localStorage.getItem("lastname");
-      attributes["email"] = email;
-      attributes["givenName"] = firstname;
-      attributes["familyName"] = lastname;
-      attributes["encodedemail"] = encodedemail;
-      var strAtts = JSON.stringify(attributes);
-      console.log('>>>>> Genesys: Attributes to send: ' + strAtts);
-      ac('identify', email, {email:email,givenName:firstname,familyName:lastname});
-    }
-    ac('pageview', {}, attributes);
-  }});
-  ac('load', 'autotrackIdle', { idleEvents: [ {},  { eventName: 'idle_for_30_sec', idleAfter: 30 } ] });
-  ac('on', 'webchat:all', (event) => {
-  console.log('received %s:%s event', event.actionMediaType, event.actionState, event); 
-	  gtag('event','Engage',{'event_category':'GPEChat','event_label': event.actionMediaType +':' + event.actionState});
-	  console.log('Engagement GA sent');
-    });
-  ac('on', 'contentoffer:all', (eventCO) => {
-  console.log('received %s:%s event', eventCO.actionMediaType, eventCO.actionState, eventCO); 
-	  gtag('event','ContentOffer',{'event_category':'GPEContentOffer','event_label': eventCO.actionMediaType +':' + eventCO.actionState});
-	  console.log('Content Offer GA sent');
-    });
+(function (g, e, n, es, ys) {
+        g['_genesysJs'] = e;
+        g[e] = g[e] || function () {
+          (g[e].q = g[e].q || []).push(arguments)
+        };
+        g[e].t = 1 * new Date();
+        g[e].c = es;
+        ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+      })(window, 'Genesys', 'https://apps.mypurecloud.ie/genesys-bootstrap/genesys.min.js', {
+        environment: 'euw1',
+        deploymentId: 'da5cabaa-076e-4dfa-9d2e-70738e41ee33'
+      });
     </script>
 
 	
