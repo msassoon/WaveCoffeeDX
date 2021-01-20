@@ -4,7 +4,20 @@
 <head>
     <title>Wave Coffee Cart</title>
 	<link rel="shortcut icon" href="favicon.ico"/>
-<script type="text/javascript" src=js/getgpe.js></script>
+    <script>
+(function (g, e, n, es, ys) {
+        g['_genesysJs'] = e;
+        g[e] = g[e] || function () {
+          (g[e].q = g[e].q || []).push(arguments)
+        };
+        g[e].t = 1 * new Date();
+        g[e].c = es;
+        ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+      })(window, 'Genesys', 'https://apps.mypurecloud.ie/genesys-bootstrap/genesys.min.js', {
+        environment: 'euw1',
+        deploymentId: '5c0a08e2-ab67-4ac4-aa98-bf9b7c793ed2'
+      });
+    </script>
 	
 <style>
 .button {
@@ -22,10 +35,6 @@ top:450px;right:-15px;position:fixed;z-index:99999;padding:10px;color:#000000;bo
   <area shape="rect" coords="288,74,638,123" alt="Store" href="store.html">
   <area shape="rect" coords="1033,77,1197,115" alt="Contact Us" href="contact.html">
 </map>
-<script src="https://apps.mypurecloud.ie/widgets/9.0/cxbus.min.js" onload="javascript:CXBus.configure({debug:false,pluginsPath:'https://apps.mypurecloud.ie/widgets/9.0/plugins/'}); CXBus.loadPlugin('widgets-core');"></script>
 
-<script type="text/javascript" src=js/widgets.js></script>
-
-<button class="button chat-button" onclick="customPlugin.command('WebChat.open');">Start Chat</button>
 </body>
 </html>
