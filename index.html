@@ -36,7 +36,10 @@
         environment: 'euw1',
         deploymentId: '820df811-6380-46a3-9320-929b3a8d39c2'
       });
-	Genesys("command", "Journey.record", { eventName: "login",  customAttributes: { email: "joe@cxmail.com", givenName: "Joe", familyName: "Bloggs" } });
+	Genesys("command", "Journey.record", { eventName: "login",  customAttributes: { email: "joe@cxmail.com", givenName: "Joe", familyName: "Bloggs" }, traitsMapper: [
+   {"fieldName": "email"},
+   {"fieldname": "givenName"},
+   {"fieldname": "familyName"}] });
     </script>
 
 	
