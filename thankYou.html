@@ -17,6 +17,15 @@
         environment: 'euw1',
         deploymentId: '820df811-6380-46a3-9320-929b3a8d39c2'
       });
+ Genesys("command", "Database.set", {
+  	messaging: {
+    		customAttributes: {
+      				   department: "sales",
+      				   ref_number: "86429835673",
+      				   order_status: "submitted"
+    				   }
+  		   }
+	});
     </script>
 	
 <style>
