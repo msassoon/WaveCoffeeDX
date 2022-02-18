@@ -40,7 +40,8 @@
    {"fieldName": "email"},
    {"fieldname": "givenName"},
    {"fieldname": "familyName"}] });});
-	    Genesys("subscribe", "Messenger.opened", function() {gtag('event','Engage',{'event_category':'GPEChat','event_label': event.actionMediaType +':' + event.actionState});});
+	Genesys("subscribe", "Messenger.opened", function() {gtag('event','Engage',{'event_category':'GPEWM','event_label': 'Messenger opened'});});
+   	Genesys("subscribe", "Conversations.started", function() {gtag('event','Engage',{'event_category':'GPEWM','event_label': 'Messenger Conversation started'});});
     </script>
 
 	
