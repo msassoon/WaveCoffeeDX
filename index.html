@@ -36,10 +36,7 @@
         environment: 'euw1',
         deploymentId: '820df811-6380-46a3-9320-929b3a8d39c2'
       });
-<!--	Genesys("subscribe", "Journey.ready", function(){Genesys("command", "Journey.record", { eventName: "login",  customAttributes: { email: "joe@cxmail.com", givenName: "Joe", familyName: "Bloggs" }, traitsMapper: [
-   {"fieldName": "email"},
-   {"fieldName": "givenName"},
-   {"fieldName": "familyName"}] });}); -->
+
 	Genesys("subscribe", "Messenger.opened", function() {gtag('event','Engage',{'event_category':'GPEWM','event_label': 'Messenger opened'});});
    	Genesys("subscribe", "Conversations.started", function() {gtag('event','Engage',{'event_category':'GPEWM','event_label': 'Messenger Conversation started'});});
 	Genesys("subscribe", "Messenger.closed", function() {gtag('event','Engage',{'event_category':'GPEWM','event_label': 'Messenger Closed'});});
